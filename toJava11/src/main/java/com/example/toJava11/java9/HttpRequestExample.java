@@ -20,11 +20,11 @@ public class HttpRequestExample {
 
     public Repository getInfoGithubUser(String user, String repo) throws URISyntaxException, IOException, InterruptedException {
 
-        HttpRequest request = HttpRequest.newBuilder()
+        var request = HttpRequest.newBuilder()
                 .uri(new URI("https://api.github.com/repos/" + user + "/" + repo))
                 .GET()
                 .build();
-        HttpResponse<String> detailRepoRequest = HttpClient.newHttpClient()
+        var detailRepoRequest = HttpClient.newHttpClient()
                 .send(request, HttpResponse.BodyHandlers.ofString());
         var set = Set.of("a", "b", "c");
         return gson.fromJson(detailRepoRequest.body() , Repository.class);
